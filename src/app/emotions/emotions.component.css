@@ -1,0 +1,13 @@
+.img-area{
+  height: 200px;
+  width: 100%;
+  padding: 8px;
+  background: rgba(0,0,0,.03);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  border: 1px solid #ddd;
+}
+.img-wrapper{
+  width: 100%;
+  height: 100%;
+  border: 2px dashed #ddd;
+}
