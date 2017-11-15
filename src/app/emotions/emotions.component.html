@@ -1,36 +1,53 @@
 <div class="container">
   <div class="header">
-    <button class="mat-raised mat-info mat-button mat-ink-ripple" type="button" (click)="getRandomImage()">
+    <button mat-raised-button type="button" (click)="getRandomImage()">
       <span>Random Example</span>
       <i class="fa fa-cubes" aria-hidden="true"></i>
       <div class="mat-ripple-container" style=""></div>
     </button>
-    <h3>Click "Random Example" to get a example!</h3>
+    <h5>Click "Random Example" to get a example!</h5>
   </div>
   
   <div layout="row" class="img-area">
     <div class="img-wrapper">
-      <img *ngIf="info != undefined && info.active != undefined && info.active.imgURL" [src]="info.active.imgURL" alt="">
+      <div *ngIf="info != undefined && info.active != undefined && info.active.status == 1" class="img-ctrl">
+        <div class="ctrl">
+            <button mat-icon-button color="primary" (click)="closeImg()">
+              <mat-icon aria-label="cansel">cancel</mat-icon>
+            </button>
+        </div>
+        <img [src]="info.active.imageURL" alt="">
+      </div>
     </div>
   </div>
 
-  <div layout="row" class="lf-ng-mat-file-input-container layout-row">
-    <div class="lf-ng-mat-file-input-caption layout-align-start-center layout-row flex disabled" layout="row" layout-align="start center" flex="" ng-class="{'disabled':isDisabled}">
-      <mat-icon class="lf-icon material-icons lf-caption" aria-hidden="true"></mat-icon>
-      <div flex="" class="lf-ng-mat-file-input-caption-text flex ng-hide" aria-hidden="true"></div>
-      <mat-progress-bar mode="determinate" value="0" aria-valuemin="10" aria-valuemax="100" role="progressbar" aria-valuenow="0" aria-hidden="true" class="ng-hide">
-      </mat-progress-bar>
-    </div>
-    <button class="mat-raised" type="button" ng-transclude="" aria-label="remove all files">
-      <mat-icon class="lf-icon material-icons lf-remove" aria-hidden="true"></mat-icon>
+  <div layout="row" class="file-ctrl">
+    <button class="mat-raised-button" color="warn" type="button" aria-label="remove all files">
+      <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
       <span> Remove</span>
     </button>
-    <button class="mat-raised mat-primary mat-button mat-ink-ripple" type="button" ng-transclude="" ng-click="openDialog($event, this)">
-      <mat-icon class="lf-icon material-icons lf-browse" aria-hidden="true"></mat-icon>
+    <button class="mat-raised-button mat-primary mat-button mat-ink-ripple" color="primary" type="button">
+      <i class="fa fa-folder-open-o fa-2x" aria-hidden="true"></i>
       <span> Browse</span>
-      <!-- <input type="file" aria-label="" accept="" class="lf-ng-mat-file-input-tag" disabled="disabled"> -->
     </button>
   </div>
 
-  <div class="outputAnalyse"></div>
+  <div *ngIf="info.active.status == 1" class="main-content">
+    <mat-progress-bar *ngIf="info.active.status != undefined && info.active.status=='2'" mode="indeterminate"></mat-progress-bar>
+    <div class="output">
+      <div class="output-header">
+        <h4>{{info.active.text}}</h4>
+      </div>
+      <div class="emotions row">
+        <div  *ngFor="let option of info.options" class="item col-md-4 col-sm-4 col-xs-6">
+            <p>{{option.principal.main}}</p>
+            <img [src]="'assets/emotions/'+option.principal.main+'.gif'" alt="">
+            <chart [options]="option.op" (load)="reload($event.context)"></chart>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 </div>
+<!--  -->

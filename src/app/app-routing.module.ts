@@ -18,7 +18,7 @@ const routes: Routes = [{
   component: HateComponent
 },
 {
-  path: 'emotions',
+  path: '',
   component: DashboardComponent
 },
 {
@@ -26,7 +26,7 @@ const routes: Routes = [{
   component: NeighborsComponent
 },
 {
-  path: '',
+  path: 'emotions',
   component: EmotionsComponent
 },
 {

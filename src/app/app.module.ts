@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { TextEmotionsComponent } from './text-emotions/text-emotions.component';
@@ -51,7 +52,8 @@ export function highchartsFactory() {
     MatButtonModule, MatCheckboxModule, MatGridListModule, MatListModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatProgressBarModule,
     ChartModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
 
   providers: [

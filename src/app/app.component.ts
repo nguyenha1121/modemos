@@ -10,6 +10,6 @@ export class AppComponent {
 
 
   info = {
-    title: 'Text Emotions'
+    title: 'Modemos'
   };
 }

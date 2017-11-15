@@ -151,7 +151,7 @@ export class TextEmotionsComponent implements OnInit {
 
     selectTweet(tweet) {
         this.info.active = tweet;
-        if(this.options.series[0].data[0].y > 100) {
+        if (this.options.series[0].data[0].y > 100) {
             this.options.series[0].data[0].y -= 5;
         } else {
             this.options.series[0].data[0].y += 5;
