@@ -7,7 +7,7 @@ import { TextEmotionsComponent } from './text-emotions/text-emotions.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatGridListModule, MatListModule,
-  MatToolbarModule, MatIconModule, MatProgressBarModule } from '@angular/material';
+  MatToolbarModule, MatIconModule, MatProgressBarModule, MatSliderModule, MatCardModule, MatSelectModule } from '@angular/material';
 import { ChartModule } from 'angular2-highcharts';
 import * as highchart from 'highcharts';
 import * as highchartsHeatmap from 'highcharts/modules/heatmap';
@@ -20,6 +20,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmbeddingsComponent } from './embeddings/embeddings.component';
 import { NeighborsComponent } from './neighbors/neighbors.component';
 import { EmotionsComponent } from './emotions/emotions.component';
+import { FilterTextComponent } from './filter-text/filter-text.component';
+import { EmojPipe } from './emoj.pipe';
+import { FilterImageComponent } from './filter-image/filter-image.component';
 
 
 // import HighchartsMore from 'highcharts/highcharts-more';
@@ -44,13 +47,17 @@ export function highchartsFactory() {
     DashboardComponent,
     EmbeddingsComponent,
     NeighborsComponent,
-    EmotionsComponent
+    EmotionsComponent,
+    FilterTextComponent,
+    EmojPipe,
+    FilterImageComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule, MatGridListModule, MatListModule,
-    MatButtonModule, MatToolbarModule, MatIconModule, MatProgressBarModule,
+    MatButtonModule, MatCheckboxModule, MatGridListModule, MatListModule, MatCardModule,
+    MatButtonModule, MatToolbarModule, MatIconModule, MatProgressBarModule, MatSliderModule,
+    MatSelectModule,
     ChartModule,
     AppRoutingModule,
     HttpClientModule,

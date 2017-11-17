@@ -1,0 +1,17 @@
+<section class="main container">
+  <div class="header">
+    <!-- <mat-card-content> -->
+      <mat-slider thumbLabel=true max=100 min=0 step=5 (change)="changeSlicer($event)"></mat-slider>
+      <span>{{'😡'}}</span>
+      <div class="selecter">
+          <mat-form-field>
+            <mat-select id="select-1" name="hateClassifier" (change)="changeClassifier($event)" placeholder="Hate Classifier">
+              <mat-option *ngFor="let opt of info.hateClassifier" [value]="opt.value">
+                {{opt.text}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+    <!-- </mat-card-content> -->
+  </div>
+</section>

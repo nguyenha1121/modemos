@@ -41,7 +41,7 @@
       <div class="emotions row">
         <div  *ngFor="let option of info.options" class="item col-md-4 col-sm-4 col-xs-6">
             <p>{{option.principal.main}}</p>
-            <img [src]="'assets/emotions/'+option.principal.main+'.gif'" alt="">
+            <img [src]="'assets/emotions/'+option.principal.main+'.gif'" [ngStyle]="{'opacity':option.principal.opacity}" alt="">
             <chart [options]="option.op" (load)="reload($event.context)"></chart>
         </div>
       </div>

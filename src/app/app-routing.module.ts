@@ -7,6 +7,8 @@ import { HateComponent } from './hate/hate.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NeighborsComponent } from './neighbors/neighbors.component';
 import { EmotionsComponent } from './emotions/emotions.component';
+import { FilterTextComponent } from './filter-text/filter-text.component';
+//  Test
 import { EmbeddingsComponent } from './embeddings/embeddings.component';
 
 const routes: Routes = [{
@@ -32,6 +34,10 @@ const routes: Routes = [{
 {
   path: 'test',
   component: EmbeddingsComponent
+},
+{
+  path: 'text-filter',
+  component: FilterTextComponent
 }];
 
 @NgModule({

@@ -200,9 +200,8 @@ export class EmotionsComponent implements OnInit {
       ]
     };
   }
-
-  reload() {
-
+  reload (e) {
+    console.log(e);
   }
 
 }
