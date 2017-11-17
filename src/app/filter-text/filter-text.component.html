@@ -5,7 +5,7 @@
       <span>{{'😡'}}</span>
       <div class="selecter">
           <mat-form-field>
-            <mat-select id="select-1" name="hateClassifier" (change)="changeClassifier($event)" placeholder="Hate Classifier">
+            <mat-select id="select-1" name="hateClassifier" [(value)]="info.state.condition.sortBy" (change)="changeClassifier($event)" placeholder="Hate Classifier">
               <mat-option *ngFor="let opt of info.hateClassifier" [value]="opt.value">
                 {{opt.text}}
               </mat-option>
@@ -13,5 +13,12 @@
           </mat-form-field>
       </div>
     <!-- </mat-card-content> -->
+  </div>
+  <div class="listToShow">
+    <ul id="list">
+      <li class="animate-repeat text-item {{item[info.state.condition.sortBy] >= 50?'lonhon':'nhohon'}}" *ngFor="let item of info.state.listToShow">
+        {{item.text}}
+      </li>
+    </ul>
   </div>
 </section>

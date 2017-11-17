@@ -33,3 +33,18 @@
   max-width: 100%;
 
 }
+.text-item::before {
+  content: "■ ";
+  font-size: 30px;
+}
+.animate-repeat {
+  line-height: 30px;
+  list-style: none;
+  box-sizing: border-box;
+}
+.lonhon{
+  color: rgb(103, 58, 183);
+}
+.nhohon{
+  color: rgb(63, 81, 181);
+}
