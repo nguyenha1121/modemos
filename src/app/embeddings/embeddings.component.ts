@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import { setInterval } from 'timers';
 
 @Component({
   selector: 'app-embeddings',
@@ -7,21 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmbeddingsComponent implements OnInit {
 
+  info = {
+    mode : undefined,
+    imageURLs: []
+  };
+
   constructor() {
-    this.options = {
-      chart: { type: 'spline' },
-      title: { text : 'dynamic data example'},
-      series: [{ data: [2, 3, 5, 8, 13]}]
-    };
-    setInterval(() => this.chart.series[0].addPoint(Math.random() * 10), 1000);
-  }
-  chart: any;
-  options: Object;
-  saveInstance(chartInstance) {
-      this.chart = chartInstance;
   }
 
   ngOnInit() {
+
+    this.fetch();
+
+    setInterval(() => {
+      this.info.mode = !this.info.mode;
+    }, 50);
+  }
+
+  fetch() {
+    this.info.imageURLs = [
+      {
+        id: 1,
+        url: 'https://i.ytimg.com/vi/mHHJza5Sl88/maxresdefault.jpg'
+      }
+    ];
   }
 
 }

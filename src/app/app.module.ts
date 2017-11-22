@@ -24,6 +24,9 @@ import { FilterTextComponent } from './filter-text/filter-text.component';
 import { EmojPipe } from './emoj.pipe';
 import { FilterImageComponent } from './filter-image/filter-image.component';
 
+import { D3Service } from 'd3-ng2-service';
+import { ViolenceComponent } from './violence/violence.component';
+
 
 // import HighchartsMore from 'highcharts/highcharts-more';
 
@@ -50,7 +53,8 @@ export function highchartsFactory() {
     EmotionsComponent,
     FilterTextComponent,
     EmojPipe,
-    FilterImageComponent
+    FilterImageComponent,
+    ViolenceComponent
   ],
   imports: [
     BrowserModule,
@@ -60,11 +64,11 @@ export function highchartsFactory() {
     MatSelectModule,
     ChartModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule
   ],
-
   providers: [
-    { provide: HighchartsStatic, useFactory: highchartsFactory }
+    { provide: HighchartsStatic, useFactory: highchartsFactory },
+    D3Service
   ],
   bootstrap: [AppComponent]
 })

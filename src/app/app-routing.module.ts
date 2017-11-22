@@ -8,6 +8,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NeighborsComponent } from './neighbors/neighbors.component';
 import { EmotionsComponent } from './emotions/emotions.component';
 import { FilterTextComponent } from './filter-text/filter-text.component';
+import { FilterImageComponent } from './filter-image/filter-image.component';
+import { ViolenceComponent } from './violence/violence.component';
 //  Test
 import { EmbeddingsComponent } from './embeddings/embeddings.component';
 
@@ -38,6 +40,14 @@ const routes: Routes = [{
 {
   path: 'text-filter',
   component: FilterTextComponent
+},
+{
+  path: 'image-filter',
+  component: FilterImageComponent
+},
+{
+  path: 'violence',
+  component: ViolenceComponent
 }];
 
 @NgModule({
