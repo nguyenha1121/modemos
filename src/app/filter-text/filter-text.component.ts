@@ -18,15 +18,15 @@ export class FilterTextComponent implements OnInit {
     hateClassifier: [{
       text: 'Oyoty Hate',
       value: 'oyotyHate'
-    },
-    {
-      text: 'Keyword',
-      value: 'keyword'
-    },
-    {
-      text: 'Oyoty Toxicity',
-      value: 'oyotyHoxicity'
-    }],
+      },
+      {
+        text: 'Keyword',
+        value: 'keyword'
+      },
+      {
+        text: 'Oyoty Toxicity',
+        value: 'oyotyHoxicity'
+      }],
     status: '0',
     listTweet: undefined,
     state: {
@@ -63,7 +63,7 @@ export class FilterTextComponent implements OnInit {
       .ForEach(r => {
           this.info.state.listToShow.push(r);
       });
-    console.log(this.info.state.listToShow);
+    // console.log(this.info.state.listToShow);
   }
 
   changeSlicer(e?: any) {
