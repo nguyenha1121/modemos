@@ -27,9 +27,28 @@ export class NeighborsComponent implements OnInit {
           'okkkkk'
         ]
       },
-      active: null,
+      active: '',
       outputData: {
-        word: 'plzplzplz',
+        ourOyoty: [],
+        glove: []
+      }
+    };
+
+    constructor(
+    ) {}
+
+
+    selectWord(word) {
+        this.info.active = word;
+        this.update();
+        // this.info.outputData.word = word;
+    }
+
+    ngOnInit() {
+    }
+
+    update() {
+      this.info.outputData = {
         ourOyoty: [
           'plzplzplz',
           'pleassssee',
@@ -48,19 +67,7 @@ export class NeighborsComponent implements OnInit {
           'pleasssssse',
           'pleeeaassee'
         ]
-      }
-    };
-
-    constructor(
-    ) {}
-
-
-    selectWord(word) {
-        this.info.active = word;
-        this.info.outputData.word = word;
-    }
-
-    ngOnInit() {
+      };
     }
 
 }

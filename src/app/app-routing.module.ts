@@ -10,6 +10,8 @@ import { EmotionsComponent } from './emotions/emotions.component';
 import { FilterTextComponent } from './filter-text/filter-text.component';
 import { FilterImageComponent } from './filter-image/filter-image.component';
 import { ViolenceComponent } from './violence/violence.component';
+import { FaceEmotionComponent } from './face-emotion/face-emotion.component';
+import { ImageComponent } from './image/image.component';
 //  Test
 import { EmbeddingsComponent } from './embeddings/embeddings.component';
 
@@ -48,6 +50,14 @@ const routes: Routes = [{
 {
   path: 'violence',
   component: ViolenceComponent
+},
+{
+  path: 'face-emotion',
+  component: FaceEmotionComponent
+},
+{
+  path: 'image',
+  component: ImageComponent
 }];
 
 @NgModule({

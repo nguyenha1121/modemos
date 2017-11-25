@@ -24,25 +24,44 @@
       </mat-toolbar>
       <div class="main-content">
         <div class="head">
-          <label for="word">Word*</label>
-          <input name="word" matInput [value]="info.outputData.word" disabled>
+            <!-- <mat-form-field class="example-full-width">
+              <input matInput name='word' [value]="info.active?info.active:''" placeholder="Leave a comment">
+            </mat-form-field> -->
+            <mat-form-field class="example-form-field">
+              <input matInput type="text" placeholder="Word *" name='word' [(ngModel)]="info.active" disabled/>
+              <button mat-button *ngIf="info.active" matSuffix mat-icon-button aria-label="Clear" (click)="info.active=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
         </div>
-        <div class="output">
+        <div class="output" *ngIf="info.active != ''">
           <div class="output-row">
-            <h3>Our Oyoty Embedding</h3>
-            <h5>What neighbors we get?</h5>
+            <h4>Our Oyoty Embedding</h4>
+            <h6>What neighbors we get?</h6>
             <mat-list>
               <mat-list-item *ngFor="let word of info.outputData.ourOyoty">
                 <span>{{word}}</span>
               </mat-list-item>
+              <mat-list-item *ngIf="info.outputData && info.outputData.glove.length == 0">
+                  <p style="margin-left:20px; color:orangered">
+                    <i class="fa fa-times-circle" aria-hidden="true"></i> Nothing
+                    <i class="fa fa-times-circle" aria-hidden="true"></i>
+                  </p>
+              </mat-list-item>
             </mat-list>
           </div>
           <div class="output-row">
-              <h3>GloVe Embedding</h3>
-              <h5>What existing embeddings get?</h5>
+              <h4>GloVe Embedding</h4>
+              <h6>What existing embeddings get?</h6>
               <mat-list>
                 <mat-list-item *ngFor="let wordg of info.outputData.glove">
                   <span>{{wordg}}</span>
+                </mat-list-item>
+                <mat-list-item *ngIf="info.outputData.glove.length == 0">
+                    <p style="margin-left:20px; color:orangered">
+                      <i class="fa fa-times-circle" aria-hidden="true"></i> Nothing
+                      <i class="fa fa-times-circle" aria-hidden="true"></i>
+                    </p>
                 </mat-list-item>
               </mat-list>
           </div>

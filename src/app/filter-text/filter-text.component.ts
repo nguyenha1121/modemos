@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 
-import * as Collections from 'typescript-collections';
+// import * as Collections from 'typescript-collections';
 import { List } from 'linqts';
 
 @Component({

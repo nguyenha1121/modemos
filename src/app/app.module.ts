@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -7,7 +8,8 @@ import { TextEmotionsComponent } from './text-emotions/text-emotions.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatGridListModule, MatListModule,
-  MatToolbarModule, MatIconModule, MatProgressBarModule, MatSliderModule, MatCardModule, MatSelectModule } from '@angular/material';
+  MatToolbarModule, MatIconModule, MatProgressBarModule, MatSliderModule, MatCardModule,
+  MatSelectModule, MatProgressSpinnerModule, MatTooltipModule, MatInputModule } from '@angular/material';
 import { ChartModule } from 'angular2-highcharts';
 import * as highchart from 'highcharts';
 import * as highchartsHeatmap from 'highcharts/modules/heatmap';
@@ -26,6 +28,9 @@ import { FilterImageComponent } from './filter-image/filter-image.component';
 
 import { D3Service } from 'd3-ng2-service';
 import { ViolenceComponent } from './violence/violence.component';
+import { FaceEmotionComponent } from './face-emotion/face-emotion.component';
+import { ImageComponent } from './image/image.component';
+import { MytreeComponent } from './mytree/mytree.component';
 
 
 // import HighchartsMore from 'highcharts/highcharts-more';
@@ -54,17 +59,21 @@ export function highchartsFactory() {
     FilterTextComponent,
     EmojPipe,
     FilterImageComponent,
-    ViolenceComponent
+    ViolenceComponent,
+    FaceEmotionComponent,
+    ImageComponent,
+    MytreeComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule, MatGridListModule, MatListModule, MatCardModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatProgressBarModule, MatSliderModule,
-    MatSelectModule,
+    MatSelectModule, MatProgressSpinnerModule, MatTooltipModule, MatInputModule,
     ChartModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     { provide: HighchartsStatic, useFactory: highchartsFactory },

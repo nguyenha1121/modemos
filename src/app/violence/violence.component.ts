@@ -24,13 +24,13 @@ export class ViolenceComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.fetch();
+    this.fillData();
     this.run = setInterval(() => {
       this.info.mode = !this.info.mode;
     }, 500);
   }
 
-  fetch() {
+  fillData() {
     this.info.imageURLs = [
       {
         id: 1,
