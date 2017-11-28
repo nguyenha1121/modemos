@@ -31,7 +31,7 @@
       </mat-toolbar>
       <div class="main-content">
         <div class="right" *ngIf="info.active.status > 0">
-          <svg width="600" height="450" *ngIf="info.mode==1">
+          <svg width="600" height="450" *ngIf="info.mode[0]">
             <path class="link" d="M0,205C60,205 60,102.5 120,102.5" path="link" style="stroke: rgb(33, 150, 243); opacity: 1;"></path>
             <path class="link" d="M0,205C60,205 60,307.5 120,307.5" path="link" style="stroke: orange; opacity: 0.1;"></path>
             <g transform="translate(20,20)"></g>
@@ -48,7 +48,7 @@
                 <text x="-5" dy="-.60em" text-anchor="end" style="fill-opacity: 1;"></text>
             </g>
           </svg>
-          <svg width="600" height="450" *ngIf="info.mode!=1">
+          <svg width="600" height="450" *ngIf="!info.mode[0]">
             <path class="link" d="M0,205C60,205 60,102.5 120,102.5" path="link" style="stroke: orange; opacity: 0.1;"></path>
             <path class="link" d="M0,205C60,205 60,307.5 120,307.5" path="link" style="stroke: rgb(33, 150, 243); opacity: 1;"></path>
             <g transform="translate(20,20)"></g>
@@ -67,7 +67,7 @@
           </svg>
         </div>
         <div class="left" *ngIf="info.active.status > 0">
-          <svg width="600" height="450" *ngIf="info.mode==1">
+          <svg width="600" height="450" *ngIf="info.mode[1]">
             <path class="link" d="M0,205C60,205 60,102.5 120,102.5" path="link" style="stroke: rgb(33, 150, 243); opacity: 1;"></path>
             <path class="link" d="M0,205C60,205 60,307.5 120,307.5" path="link" style="stroke: orange; opacity: 0.1;"></path>
             <g transform="translate(20,20)"></g>
@@ -84,7 +84,7 @@
                 <text x="-5" dy="-.60em" text-anchor="end" style="fill-opacity: 1;"></text>
             </g>
           </svg>
-          <svg width="600" height="450" *ngIf="info.mode!=1">
+          <svg width="600" height="450" *ngIf="!info.mode[1]">
             <path class="link" d="M0,205C60,205 60,102.5 120,102.5" path="link" style="stroke: orange; opacity: 0.1;"></path>
             <path class="link" d="M0,205C60,205 60,307.5 120,307.5" path="link" style="stroke: rgb(33, 150, 243); opacity: 1;"></path>
             <g transform="translate(20,20)"></g>

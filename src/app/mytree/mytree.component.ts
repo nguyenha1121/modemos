@@ -37,7 +37,7 @@ export class MytreeComponent implements OnInit {
   }
 
   ngOnChanges() {
-    console.log(1);
+    // console.log(1);
     this.render();
   }
   
@@ -54,7 +54,7 @@ export class MytreeComponent implements OnInit {
           .size([500, 500]);
     let padding = 25;
     let width = 650;
-    let height = 450;
+    let height = 500;
     if (this.parentNativeElement !== null) {
       if (this.svg) {
         this.svg.selectAll('*').remove();
@@ -74,7 +74,7 @@ export class MytreeComponent implements OnInit {
           .append('path')
             .attr('class', 'link')
             .attr('d', (d) => {
-              console.log(d);
+              // console.log(d);
               return 'M' + d.y + ',' + d.x
                 + 'C' + (d.y + d.parent.y)  / 2 + ','  + d.x
                 + ' ' + (d.y + d.parent.y) / 2 + ',' + d.parent.x
@@ -153,7 +153,7 @@ export class MytreeComponent implements OnInit {
       //     .style('text-anchor', (d) =>  d.children ? 'end' : 'start' )
       //     .text((d) => d.data.name );
     } else {
-      console.log('ssss');
+      // console.log('ssss');
     }
   }
 }

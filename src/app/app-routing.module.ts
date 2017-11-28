@@ -12,53 +12,71 @@ import { FilterImageComponent } from './filter-image/filter-image.component';
 import { ViolenceComponent } from './violence/violence.component';
 import { FaceEmotionComponent } from './face-emotion/face-emotion.component';
 import { ImageComponent } from './image/image.component';
+import { LoginComponent } from './login/login.component';
 //  Test
 import { EmbeddingsComponent } from './embeddings/embeddings.component';
 
-const routes: Routes = [{
-  path : 'text-emotions',
-  component : TextEmotionsComponent
-},
-{
-  path: 'hate',
-  component: HateComponent
-},
-{
-  path: '',
-  component: DashboardComponent
-},
-{
-  path: 'neighbors',
-  component: NeighborsComponent
-},
-{
-  path: 'emotions',
-  component: EmotionsComponent
-},
-{
-  path: 'test',
-  component: EmbeddingsComponent
-},
-{
-  path: 'text-filter',
-  component: FilterTextComponent
-},
-{
-  path: 'image-filter',
-  component: FilterImageComponent
-},
-{
-  path: 'violence',
-  component: ViolenceComponent
-},
-{
-  path: 'face-emotion',
-  component: FaceEmotionComponent
-},
-{
-  path: 'image',
-  component: ImageComponent
-}];
+import { AuthGuard } from './auth.guard';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: LoginComponent
+  },
+  {
+    path : 'text-emotions',
+    canActivate: [AuthGuard],
+    component : TextEmotionsComponent
+  },
+  {
+    path: 'hate',
+    canActivate: [AuthGuard],
+    component: HateComponent
+  },
+  {
+    path: 'dashboard',
+    canActivate: [AuthGuard],
+    component: DashboardComponent
+  },
+  {
+    path: 'neighbors',
+    canActivate: [AuthGuard],
+    component: NeighborsComponent
+  },
+  {
+    path: 'emotions',
+    component: EmotionsComponent
+  },
+  {
+    path: 'test',
+    canActivate: [AuthGuard],
+    component: EmbeddingsComponent
+  },
+  {
+    path: 'text-filter',
+    canActivate: [AuthGuard],
+    component: FilterTextComponent
+  },
+  {
+    path: 'image-filter',
+    canActivate: [AuthGuard],
+    component: FilterImageComponent
+  },
+  {
+    path: 'violence',
+    canActivate: [AuthGuard],
+    component: ViolenceComponent
+  },
+  {
+    path: 'face-emotion',
+    canActivate: [AuthGuard],
+    component: FaceEmotionComponent
+  },
+  {
+    path: 'image',
+    canActivate: [AuthGuard],
+    component: ImageComponent
+  }];
 
 @NgModule({
   imports: [

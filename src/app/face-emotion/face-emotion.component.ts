@@ -90,10 +90,10 @@ export class FaceEmotionComponent implements OnInit {
     this.info.imageResults = [
       {
         id: 1,
-        url: 'https://modemos.epfl.ch/images/tmpxpr1ep9z_faces.jpg',
+        url: 'assets/faces/tmpxpr1ep9z_faces.jpg',
         faces: [
           {
-            url: 'https://modemos.epfl.ch/images/tmpxpr1ep9z_face0.jpg',
+            url: 'assets/faces/tmpxpr1ep9z_face0.jpg',
             emotions: {
                 happiness: 0.9,
                 surprise: 0.1,
@@ -104,7 +104,7 @@ export class FaceEmotionComponent implements OnInit {
             }
           },
           {
-            url: 'https://modemos.epfl.ch/images/tmpxpr1ep9z_face1.jpg',
+            url: 'assets/faces/tmpxpr1ep9z_face1.jpg',
             emotions: {
               happiness: 0.8,
               surprise: 0.1,
@@ -115,7 +115,7 @@ export class FaceEmotionComponent implements OnInit {
             }
           },
           {
-            url: 'https://modemos.epfl.ch/images/tmpxpr1ep9z_face2.jpg',
+            url: 'assets/faces/tmpxpr1ep9z_face2.jpg',
             emotions: {
               happiness: 0.8,
               surprise: 0.1,
@@ -126,7 +126,7 @@ export class FaceEmotionComponent implements OnInit {
             }
           },
           {
-            url: 'https://modemos.epfl.ch/images/tmpxpr1ep9z_face3.jpg',
+            url: 'assets/faces/tmpxpr1ep9z_face3.jpg',
             emotions: {
               happiness: 0.8,
               surprise: 0.1,
@@ -137,7 +137,7 @@ export class FaceEmotionComponent implements OnInit {
             }
           },
           {
-            url: 'https://modemos.epfl.ch/images/tmpxpr1ep9z_face4.jpg',
+            url: 'assets/faces/tmpxpr1ep9z_face4.jpg',
             emotions: {
               happiness: 0.8,
               surprise: 0.1,
@@ -148,7 +148,7 @@ export class FaceEmotionComponent implements OnInit {
             }
           },
           {
-            url: 'https://modemos.epfl.ch/images/tmpxpr1ep9z_face5.jpg',
+            url: 'assets/faces/tmpxpr1ep9z_face5.jpg',
             emotions: {
               happiness: 0.8,
               surprise: 0.1,
@@ -162,10 +162,10 @@ export class FaceEmotionComponent implements OnInit {
       },
       {
         id: 2,
-        url: 'https://modemos.epfl.ch/images/tmpzvp95oef_faces.jpg',
+        url: 'assets/faces/tmpzvp95oef_faces.jpg',
         faces: [
           {
-            url: 'https://modemos.epfl.ch/images/tmpzvp95oef_face0.jpg',
+            url: 'assets/faces/tmpzvp95oef_face0.jpg',
             emotions: {
               happiness: 0.02,
               surprise: 0.21,
@@ -179,10 +179,10 @@ export class FaceEmotionComponent implements OnInit {
       },
       {
         id: 3,
-        url: 'https://modemos.epfl.ch/images/tmpr34r41iq_faces.jpg',
+        url: 'assets/faces/tmpr34r41iq_faces.jpg',
         faces: [
           {
-            url: 'https://modemos.epfl.ch/images/tmpr34r41iq_face0.jpg',
+            url: 'assets/faces/tmpr34r41iq_face0.jpg',
             emotions: {
               happiness: 0.02,
               surprise: 0.30,
@@ -196,10 +196,10 @@ export class FaceEmotionComponent implements OnInit {
       },
       {
         id: 4,
-        url: 'https://modemos.epfl.ch/images/tmp8g3j0vc1_faces.jpg',
+        url: 'assets/faces/tmp8g3j0vc1_faces.jpg',
         faces: [
           {
-            url: 'https://modemos.epfl.ch/images/tmp8g3j0vc1_face0.jpg',
+            url: 'assets/faces/tmp8g3j0vc1_face0.jpg',
             emotions: {
               happiness: 0.02,
               surprise: 0.10,
@@ -213,10 +213,10 @@ export class FaceEmotionComponent implements OnInit {
       },
       {
         id: 5,
-        url: 'https://modemos.epfl.ch/images/tmp5d2q2fa2_faces.jpg',
+        url: 'assets/faces/tmp5d2q2fa2_faces.jpg',
         faces: [
           {
-            url: 'https://modemos.epfl.ch/images/tmp5d2q2fa2_face0.jpg',
+            url: 'assets/faces/tmp5d2q2fa2_face0.jpg',
             emotions: {
               happiness: 0.02,
               surprise: 0.30,
@@ -230,10 +230,10 @@ export class FaceEmotionComponent implements OnInit {
       },
       {
         id: 6,
-        url: 'https://modemos.epfl.ch/images/tmpawvnos0f_faces.jpg',
+        url: 'assets/faces/tmpawvnos0f_faces.jpg',
         faces: [
           {
-            url: 'https://modemos.epfl.ch/images/tmpawvnos0f_face0.jpg',
+            url: 'assets/faces/tmpawvnos0f_face0.jpg',
             emotions: {
               happiness: 0.02,
               surprise: 0.30,
@@ -247,10 +247,10 @@ export class FaceEmotionComponent implements OnInit {
       },
       {
         id: 7,
-        url: 'https://modemos.epfl.ch/images/tmp7xkfkswk_faces.jpg',
+        url: 'assets/faces/tmp7xkfkswk_faces.jpg',
         faces: [
           {
-            url: 'https://modemos.epfl.ch/images/tmp7xkfkswk_face0.jpg',
+            url: 'assets/faces/tmp7xkfkswk_face0.jpg',
             emotions: {
               happiness: 0.02,
               surprise: 0.30,
@@ -264,10 +264,10 @@ export class FaceEmotionComponent implements OnInit {
       },
       {
         id: 8,
-        url: 'https://modemos.epfl.ch/images/tmpr34r41iq_faces.jpg',
+        url: 'assets/faces/tmpr34r41iq_faces.jpg',
         faces: [
           {
-            url: 'https://modemos.epfl.ch/images/tmp5v0npwz0_face0.jpg',
+            url: 'assets/faces/tmp5v0npwz0_face0.jpg',
             emotions: {
               happiness: 0.02,
               surprise: 0.30,

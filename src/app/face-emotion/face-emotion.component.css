@@ -53,6 +53,9 @@ img.emoji {
 }
 .hn-faces{
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .hn-face{
   margin: 10px;
@@ -65,4 +68,7 @@ img.emoji {
 }
 .hn-wrapper{
   margin: 20px;
+}
+.img-rs{
+  padding-top: 30px;
 }

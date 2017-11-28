@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { randomBates } from 'd3-ng2-service/src/bundle-d3';
+import { setInterval, clearInterval } from 'timers';
 
 @Component({
   selector: 'app-violence',
@@ -9,7 +10,7 @@ import { randomBates } from 'd3-ng2-service/src/bundle-d3';
 export class ViolenceComponent implements OnInit {
 
   info = {
-    mode : undefined,
+    mode : [true, true],
     imageURLs: [],
     active: {
       status: -1,
@@ -25,9 +26,25 @@ export class ViolenceComponent implements OnInit {
 
   ngOnInit() {
     this.fillData();
+    // this.run = setInterval(() => {
+    //   this.info.mode[0] = !this.info.mode;
+    // }, 20);
+    // this.runningMan();
+  }
+
+  runningMan (time?: any) {
+    if (time === undefined) {
+      time = 100;
+    }
     this.run = setInterval(() => {
-      this.info.mode = !this.info.mode;
-    }, 500);
+      if (time <= 0) {
+        clearInterval(this.run);
+      }
+      console.log(time);
+      this.info.mode[0] = !this.info.mode[0];
+      this.info.mode[1] = !this.info.mode[1];
+      time --;
+    }, 20);
   }
 
   fillData() {
@@ -69,13 +86,18 @@ export class ViolenceComponent implements OnInit {
 
   selectImage(data?: any) {
     this.info.active.a_id = data.id;
-    if (this.info.active.status === -1) {
-      this.info.active.status = 4;
-    } else {
-      clearInterval(this.run);
-      this.info.active.status = Math.floor(Math.random() * 2) + 1;
-    }
-    console.log(this.info);
+    // if (this.info.active.status === -1) {
+    //   this.info.active.status = 4;
+    // } else {
+    //   clearInterval(this.run);
+    //   this.info.active.status = Math.floor(Math.random() * 2) + 1;
+    // }
+    // console.log(this.info);
+    this.info.active.status = 2;
+    this.runningMan(50);
+    // data result
+    this.info.mode[0] = true;
+    this.info.mode[1] = false;
   }
 
 }

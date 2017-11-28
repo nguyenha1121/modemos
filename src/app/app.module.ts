@@ -9,12 +9,15 @@ import { TextEmotionsComponent } from './text-emotions/text-emotions.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatGridListModule, MatListModule,
   MatToolbarModule, MatIconModule, MatProgressBarModule, MatSliderModule, MatCardModule,
-  MatSelectModule, MatProgressSpinnerModule, MatTooltipModule, MatInputModule } from '@angular/material';
+  MatSelectModule, MatProgressSpinnerModule, MatTooltipModule, MatInputModule,
+  MatSnackBarModule } from '@angular/material';
 import { ChartModule } from 'angular2-highcharts';
 import * as highchart from 'highcharts';
 import * as highchartsHeatmap from 'highcharts/modules/heatmap';
 
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
+
+import { AuthService } from './auth.service';
 
 import { HateComponent } from './hate/hate.component';
 import { AppRoutingModule } from './/app-routing.module';
@@ -31,6 +34,9 @@ import { ViolenceComponent } from './violence/violence.component';
 import { FaceEmotionComponent } from './face-emotion/face-emotion.component';
 import { ImageComponent } from './image/image.component';
 import { MytreeComponent } from './mytree/mytree.component';
+import { LoginComponent } from './login/login.component';
+
+import { AuthGuard } from './auth.guard';
 
 
 // import HighchartsMore from 'highcharts/highcharts-more';
@@ -62,7 +68,8 @@ export function highchartsFactory() {
     ViolenceComponent,
     FaceEmotionComponent,
     ImageComponent,
-    MytreeComponent
+    MytreeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +84,9 @@ export function highchartsFactory() {
   ],
   providers: [
     { provide: HighchartsStatic, useFactory: highchartsFactory },
-    D3Service
+    D3Service,
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

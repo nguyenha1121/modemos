@@ -19,6 +19,8 @@ export class ImageComponent implements OnInit {
     }
   };
 
+  run: any;
+
   constructor() { }
 
   ngOnInit() {
@@ -33,91 +35,98 @@ export class ImageComponent implements OnInit {
     this.info.status = 1;
     // get result here
     this.info.active.image = data;
-    this.info.active.result = {
-      tree: {
-        name: 'Root',
-        // active: 1,
-        children: [
-          {
-            name: 'Person',
-            active: 1,
-            children: [
-              {
-                name: '',
-                active: 1,
-                children: [
-                  {
-                    name: 'Close-up',
-                    active: 1,
-                    children: [
-                      {
-                        name: 'Provocative',
-                        active: 1,
-                      },
-                      {
-                        name: 'Not Provocative'
-                      }
-                    ]
-                  },
-                  {
-                    name: 'Not Close-up'
-                  }
-                ]
-              },
-              {
-                name: '',
-                active: 0,
-                children: [
-                  {
-                    name: 'Beach/Pool',
-                    active: 0,
-                    children: [
-                      {
-                        name: 'Bikini',
-                        active: 0,
-                      },
-                      {
-                        name: 'Not Bikini',
-                        active: 0,
-                      }
-                    ]
-                  },
-                  {
-                    name: 'Not Beach',
-                    active: 0,
-                  }
-                ]
-              },
-              {
-                name: '',
-                active: 1,
-                children: [
-                  {
-                    name: 'Family',
-                    active: 1,
-                  },
-                  {
-                    name: 'Not Family',
-                    active: 0,
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            name: 'Not Person',
-            active: 0,
-          },
-          {
-            name: 'NSFW',
-            active: 0,
-          }
-        ]
-      }
-    };
+    this.runningMan(100, () => {
+      this.info.active.result = {
+        tree: {
+          name: 'Root',
+          // active: 1,
+          children: [
+            {
+              name: 'Person',
+              active: 1,
+              children: [
+                {
+                  name: '',
+                  active: 1,
+                  children: [
+                    {
+                      name: 'Close-up',
+                      active: 1,
+                      children: [
+                        {
+                          name: 'Provocative',
+                          active: 1,
+                        },
+                        {
+                          name: 'Not Provocative'
+                        }
+                      ]
+                    },
+                    {
+                      name: 'Not Close-up'
+                    }
+                  ]
+                },
+                {
+                  name: '',
+                  active: 0,
+                  children: [
+                    {
+                      name: 'Beach/Pool',
+                      active: 0,
+                      children: [
+                        {
+                          name: 'Bikini',
+                          active: 0,
+                        },
+                        {
+                          name: 'Not Bikini',
+                          active: 0,
+                        }
+                      ]
+                    },
+                    {
+                      name: 'Not Beach',
+                      active: 0,
+                    }
+                  ]
+                },
+                {
+                  name: '',
+                  active: 1,
+                  children: [
+                    {
+                      name: 'Family',
+                      active: 1,
+                    },
+                    {
+                      name: 'Not Family',
+                      active: 0,
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              name: 'Not Person',
+              active: 0,
+            },
+            {
+              name: 'NSFW',
+              active: 0,
+            }
+          ]
+        }
+      };
+    });
+    // console.log(this.info.active.result);
     // done!
     this.info.status = 2;
   }
+
+  /**
+   * random active
+   */
 
   sl() {
     this.info.active.result = {
@@ -127,19 +136,19 @@ export class ImageComponent implements OnInit {
         children: [
           {
             name: 'Person',
-            active: 1,
+            active: Math.floor(Math.random() * 2),
             children: [
               {
                 name: '',
-                active: 1,
+                active: Math.floor(Math.random() * 2),
                 children: [
                   {
                     name: 'Close-up',
-                    active: 1,
+                    active: Math.floor(Math.random() * 2),
                     children: [
                       {
                         name: 'Provocative',
-                        active: 1,
+                        active: Math.floor(Math.random() * 2),
                       },
                       {
                         name: 'Not Provocative'
@@ -153,39 +162,39 @@ export class ImageComponent implements OnInit {
               },
               {
                 name: '',
-                active: 0,
+                active: Math.floor(Math.random() * 2),
                 children: [
                   {
                     name: 'Beach/Pool',
-                    active: 0,
+                    active: Math.floor(Math.random() * 2),
                     children: [
                       {
                         name: 'Bikini',
-                        active: 0,
+                        active: Math.floor(Math.random() * 2),
                       },
                       {
                         name: 'Not Bikini',
-                        active: 0,
+                        active: Math.floor(Math.random() * 2),
                       }
                     ]
                   },
                   {
                     name: 'Not Beach',
-                    active: 0,
+                    active: Math.floor(Math.random() * 2),
                   }
                 ]
               },
               {
                 name: '',
-                active: 0,
+                active: Math.floor(Math.random() * 2),
                 children: [
                   {
                     name: 'Family',
-                    active: 0,
+                    active: Math.floor(Math.random() * 2),
                   },
                   {
                     name: 'Not Family',
-                    active: 0,
+                    active: Math.floor(Math.random() * 2),
                   }
                 ]
               }
@@ -193,15 +202,30 @@ export class ImageComponent implements OnInit {
           },
           {
             name: 'Not Person',
-            active: 0,
+            active: Math.floor(Math.random() * 2),
           },
           {
             name: 'NSFW',
-            active: 0,
+            active: Math.floor(Math.random() * 2),
           }
         ]
       }
     };
+  }
+
+  runningMan(time?: any, callback?: () => void) {
+    if (time === undefined) {
+      time = 100;
+    }
+    this.run = setInterval(() => {
+      time --;
+      if (time <= 0) {
+        clearInterval(this.run);
+        callback();
+      } else {
+        this.sl();
+      }
+    }, 20);
   }
 
   fillData() {

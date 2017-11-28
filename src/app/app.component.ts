@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,13 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
 
-
   info = {
-    title: 'Modemos'
+    title: 'Modemos',
+    isUserLogin: false
   };
+
+  constructor(private auth: AuthService) {
+    this.info.isUserLogin = this.auth.getUserLogin();
+  }
+
 }
