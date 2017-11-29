@@ -13,6 +13,7 @@ import { ViolenceComponent } from './violence/violence.component';
 import { FaceEmotionComponent } from './face-emotion/face-emotion.component';
 import { ImageComponent } from './image/image.component';
 import { LoginComponent } from './login/login.component';
+import { AnnotationComponent } from './annotation/annotation.component';
 //  Test
 import { EmbeddingsComponent } from './embeddings/embeddings.component';
 
@@ -76,6 +77,11 @@ const routes: Routes = [
     path: 'image',
     canActivate: [AuthGuard],
     component: ImageComponent
+  },
+  {
+    path: 'annotation',
+    canActivate: [AuthGuard],
+    component: AnnotationComponent
   }];
 
 @NgModule({

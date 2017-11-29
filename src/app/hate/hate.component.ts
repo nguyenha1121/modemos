@@ -13,7 +13,7 @@ export class HateComponent implements OnInit {
     info = {
         data: {
             // simulation data
-        listTweet: [
+        listTweets: [
             'ummm. no it didnt work so i guess im stuck with this uglyonee',
             'Gotta TeraByte of space to store movies',
             "HAPPY MOTHER'S DAY to ALL MOM'S HERE and to YOUR MOMS too",
@@ -42,75 +42,7 @@ export class HateComponent implements OnInit {
         active: null,
     };
 
-
-    options = {
-        chart: {
-            type: 'column',
-            marginLeft: 60, marginRight: 60, polar: false, spacingBottom: 40, spacingTop: 0, spacingLeft: 5, spacingRight: 5, animation: {
-                duration: 1500
-            }
-            , width: 600, height: 600
-        },
-        title: {
-            text: 'Hate', align: 'center', verticalAlign: 'top', margin: 50, floating: !0, y: 30
-        },
-        legend: {
-        align: 'right',
-        verticalAlign: 'middle',
-        layout: 'vertical'
-        },
-        xAxis: {
-        categories: this.getCategories(),
-        labels: {
-            x: -10
-        }
-        },
-        // xAxis: {
-        //     tickInterval: 1, min: 0, max: 5, categories: this.getCategories()
-        // },
-        tooltip: {
-            formatter: function() {
-                return '<b>' + this.y;
-            }
-        },
-        yAxis: {
-        allowDecimals: false,
-        title: {
-            text: 'Amount'
-        }
-        },
-        responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                legend: {
-                    align: 'center',
-                    verticalAlign: 'bottom',
-                    layout: 'horizontal'
-                },
-                yAxis: {
-                    labels: {
-                        align: 'left',
-                        x: 0,
-                        y: -5
-                    },
-                    title: {
-                        text: null
-                    }
-                },
-                subtitle: {
-                    text: null
-                },
-                credits: {
-                    enabled: false
-                }
-            }
-        }]
-        },
-        series: this.getData()
-    };
+    options: any;
 
     constructor() {
         // this.options = {
@@ -123,6 +55,77 @@ export class HateComponent implements OnInit {
     // options: Object;
 
     ngOnInit() {
+    }
+
+    renderChart() {
+        this.options = {
+            chart: {
+                type: 'column',
+                marginLeft: 60, marginRight: 60, polar: false, spacingBottom: 40, spacingTop: 0, spacingLeft: 5, spacingRight: 5, animation: {
+                    duration: 1500
+                }
+                , width: 600, height: 600
+            },
+            title: {
+                text: 'Hate', align: 'center', verticalAlign: 'top', margin: 50, floating: !0, y: 30
+            },
+            legend: {
+            align: 'right',
+            verticalAlign: 'middle',
+            layout: 'vertical'
+            },
+            xAxis: {
+            categories: this.getCategories(),
+            labels: {
+                x: -10
+            }
+            },
+            // xAxis: {
+            //     tickInterval: 1, min: 0, max: 5, categories: this.getCategories()
+            // },
+            tooltip: {
+                formatter: function() {
+                    return '<b>' + this.y;
+                }
+            },
+            yAxis: {
+            allowDecimals: false,
+            title: {
+                text: 'Amount'
+            }
+            },
+            responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        align: 'center',
+                        verticalAlign: 'bottom',
+                        layout: 'horizontal'
+                    },
+                    yAxis: {
+                        labels: {
+                            align: 'left',
+                            x: 0,
+                            y: -5
+                        },
+                        title: {
+                            text: null
+                        }
+                    },
+                    subtitle: {
+                        text: null
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                }
+            }]
+            },
+            series: this.getData()
+        };
     }
 
     getData() {
@@ -146,12 +149,8 @@ export class HateComponent implements OnInit {
 
     selectTweet(tweet) {
         this.info.active = tweet;
-        // this.option.series[0].data[0].y = 50;
-        delete this.chart;
-        // this.chart = new Chart(this.option);
+        this.renderChart();
     }
 
     }
-// easy to navigate to this component
-// next we need to draw with d3js
-// or clone that !!
+

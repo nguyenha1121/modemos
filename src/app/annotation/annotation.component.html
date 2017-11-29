@@ -8,9 +8,8 @@
           </mat-toolbar-row>
         </mat-toolbar>
       <mat-list class="scr scrb">
-        <mat-list-item *ngFor="let tweet of info.data.listTweets">
+        <mat-list-item *ngFor="let tweet of info.listTweets">
           <button [ngClass]="info.active == tweet ? 'mat-button done act':'mat-button'" (click)="selectTweet(tweet)" mat-button>
-            
             <p matLine><i class="fa fa-done"></i>{{tweet}}</p>
           </button>
         </mat-list-item>
@@ -24,7 +23,7 @@
         </mat-toolbar-row>
       </mat-toolbar>
       <div class="main-content">
-        <chart [options]="options"></chart>
+        <app-mytree *ngIf="info.result" [data]="info.result"></app-mytree>
       </div>
     </div>
   </div>

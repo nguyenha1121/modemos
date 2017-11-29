@@ -37,6 +37,7 @@ import { MytreeComponent } from './mytree/mytree.component';
 import { LoginComponent } from './login/login.component';
 
 import { AuthGuard } from './auth.guard';
+import { AnnotationComponent } from './annotation/annotation.component';
 
 
 // import HighchartsMore from 'highcharts/highcharts-more';
@@ -70,6 +71,7 @@ export function highchartsFactory() {
     ImageComponent,
     MytreeComponent,
     LoginComponent,
+    AnnotationComponent,
   ],
   imports: [
     BrowserModule,

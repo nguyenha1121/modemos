@@ -213,6 +213,9 @@ export class ImageComponent implements OnInit {
     };
   }
 
+  /****
+   * Run tree
+   */
   runningMan(time?: any, callback?: () => void) {
     if (time === undefined) {
       time = 100;
@@ -225,7 +228,7 @@ export class ImageComponent implements OnInit {
       } else {
         this.sl();
       }
-    }, 20);
+    }, 10);
   }
 
   fillData() {

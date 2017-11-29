@@ -110,11 +110,13 @@ export class MytreeComponent implements OnInit {
       .attr('r', (d) => {
         // if (d.)
         if (d.data.active === 1) {
-          return 15;
+          return 12;
         } else {
-          return 2;
+          return 3;
         }
       })
+      .attr('stroke', '#333')
+      .attr('stroke-width', 2)
       .style('opacity', function(d){
         if (d.data.active === 1) {
           return 1;
