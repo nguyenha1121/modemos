@@ -17,3 +17,16 @@
   border: 1px solid #ddd;
   padding: 5px;
 }
+.full-width{
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.user-input{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
+  border-bottom: 1px dotted #ddd;
+}

@@ -25,7 +25,8 @@ export class AnnotationComponent implements OnInit {
     },
     rs: null,
     temp: 0,
-    err: false
+    err: false,
+    userInput: ''
   };
 
   ok = false;
@@ -41,7 +42,13 @@ export class AnnotationComponent implements OnInit {
     this.info.listTweets = this._annotationService.getTweets(this.info.pagination.index, 50);
   }
 
-  selectTweet(tweet?: any) {
+  selectTweet(tweets?: any) {
+    let tweet = '';
+    if (tweets === undefined) {
+      tweet = this.info.userInput;
+    } else {
+      tweet = tweets;
+    }
     this.info.active = tweet;
     this.runrun();
     this.info.temp = 0;
