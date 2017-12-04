@@ -36,11 +36,10 @@ export class MytreeComponent implements OnInit {
     this.parentNativeElement = element.nativeElement;
   }
 
-  ngOnChanges() {
-    // console.log(1);
+  ngOnChanges () {
     this.render();
   }
-  
+
   ngOnInit() {
     // this.render();
   }
@@ -82,14 +81,14 @@ export class MytreeComponent implements OnInit {
             })
             .attr('fill', 'none')
             .attr('stroke', function(d){
-              if (d.data.active === 1) {
+              if (d.data.active) {
                 return 'rgb(33, 150, 243)';
               } else {
                 return 'orange';
               }
             })
             .style('opacity', function(d){
-              if (d.data.active === 1) {
+              if (d.data.active) {
                 return 1;
               } else {
                 return 0.1;
@@ -109,7 +108,7 @@ export class MytreeComponent implements OnInit {
       node.append('circle')
       .attr('r', (d) => {
         // if (d.)
-        if (d.data.active === 1) {
+        if (d.data.active ) {
           return 12;
         } else {
           return 3;
@@ -118,14 +117,14 @@ export class MytreeComponent implements OnInit {
       .attr('stroke', '#333')
       .attr('stroke-width', 2)
       .style('opacity', function(d){
-        if (d.data.active === 1) {
+        if (d.data.active ) {
           return 1;
         } else {
           return 0.5;
         }
       })
       .attr('fill', function(d){
-        if (d.data.active === 1) {
+        if (d.data.active ) {
           return 'rgb(33, 150, 243)';
         } else {
           return '#000';
@@ -139,7 +138,7 @@ export class MytreeComponent implements OnInit {
           return d.children ? 'end' : 'start'
       })
       .style('opacity', function(d){
-        if (d.data.active === 1) {
+        if (d.data.active ) {
           return 1;
         } else {
           return 0.5;

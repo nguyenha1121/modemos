@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { TextEmotionsComponent } from './text-emotions/text-emotions.component';
 
@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatGridListModule, MatListModule,
   MatToolbarModule, MatIconModule, MatProgressBarModule, MatSliderModule, MatCardModule,
   MatSelectModule, MatProgressSpinnerModule, MatTooltipModule, MatInputModule,
-  MatSnackBarModule } from '@angular/material';
+  MatSnackBarModule, MatPaginatorModule, MatChipsModule } from '@angular/material';
 import { ChartModule } from 'angular2-highcharts';
 import * as highchart from 'highcharts';
 import * as highchartsHeatmap from 'highcharts/modules/heatmap';
@@ -18,6 +18,7 @@ import * as highchartsHeatmap from 'highcharts/modules/heatmap';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 
 import { AuthService } from './auth.service';
+import { AnnotationService } from './annotation.service';
 
 import { HateComponent } from './hate/hate.component';
 import { AppRoutingModule } from './/app-routing.module';
@@ -75,10 +76,12 @@ export function highchartsFactory() {
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule, MatGridListModule, MatListModule, MatCardModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatProgressBarModule, MatSliderModule,
-    MatSelectModule, MatProgressSpinnerModule, MatTooltipModule, MatInputModule,
+    MatSelectModule, MatProgressSpinnerModule, MatTooltipModule, MatInputModule, MatPaginatorModule, MatSnackBarModule,
+    MatChipsModule,
     ChartModule,
     AppRoutingModule,
     HttpClientModule,
@@ -88,7 +91,9 @@ export function highchartsFactory() {
     { provide: HighchartsStatic, useFactory: highchartsFactory },
     D3Service,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    AnnotationService,
+    MatSnackBarModule
   ],
   bootstrap: [AppComponent]
 })

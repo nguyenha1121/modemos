@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import {MatSnackBar} from '@angular/material';
+import { AnnotationService } from '../annotation.service';
+import { setInterval, clearInterval } from 'timers';
+
 @Component({
   selector: 'app-annotation',
   templateUrl: './annotation.component.html',
@@ -7,298 +11,211 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnnotationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _annotationService: AnnotationService,
+    private _snaclBar: MatSnackBar
+  ) { }
 
   info = {
-    listTweets: [
-      'ummm. no it didnt work so i guess im stuck with this uglyonee',
-      'Gotta TeraByte of space to store movies',
-      "HAPPY MOTHER'S DAY to ALL MOM'S HERE and to YOUR MOMS too",
-      "Why don't you make me feel like you used to",
-      "Oh fml its probs gunna be at shepards bush i hate it there",
-      "Its beautiful outside. I wish i was in new york city. But this area is pretty cool. Hip and trendy.",
-      "@kazzababe95 cut yourself a slice of cheese cake.. it makes everything better",
-      "Also, WHERE IS MY TOY STORY 3 TEASER CARMIKE 14? YOU SAID THERE WOULD BE TOY STORY 3! Movie theater fail",
-      "@TheRankinFiles to be fair, she was asking about mktg cd's, etc, but I suggested more and she never even emailed back.",
-      "Version 2 of our live, interactive Trans-Siberian ticket planner is launched: http://tinyurl.com/c5ljwm - its very cool",
-      "Had a shower. it's 5:55 PM. Triple 5's! Crap, it just turned 5:56",
-      "oh yes, the Cavs win game5, now onto game6. it's still danger, they HAVE to win this one either, it's no shot for the championship",
-      "@tarng Trudy's off Burnet...the one up north that no one goes to",
-      "BTW, hey ppl. lol TGIF. Hopefully ur day is gr8. Mine is aight. Feeling like it kinda sux I got no plans 4 the wknd....",
-      "Yeah it's Friday but I have to work at 5am tomorrow oh well going shopping afterwork",
-      "I love ridding in this weather",
-      "@opalbonfante Wonderful! Let me know what you think. Not light reading",
-      "no Santa cruz for me but I do have an interview at jamba tomorrow morning (:",
-      "Eating at Zippys with candace!",
-      "HEY YOU' ALL SUCK;its anybody on there :s im so bored common answear me",
-      "#whorewhore she is",
-      "@DustBuny: being today and all, WE'RE GONNA USE THE FORCE to make it happen!",
-      "wishes I could be the one going to our conference in the Bahamas next week"
-    ],
+    listTweets: [],
     result: undefined,
-    active: ''
+    active: '',
+    pagination: {
+      total: this._annotationService.getTotal(),
+      index: 0
+    },
+    rs: null,
+    temp: 0,
+    err: false
   };
+
+  ok = false;
 
   run: any;
 
   ngOnInit() {
+    this.info.listTweets = this._annotationService.getTweets(this.info.pagination.index, 50);
+  }
+
+  navigate(offset) {
+    this.info.pagination.index += offset;
+    this.info.listTweets = this._annotationService.getTweets(this.info.pagination.index, 50);
   }
 
   selectTweet(tweet?: any) {
     this.info.active = tweet;
-    this.runningMan(100, () => this.getResult());
+    this.runrun();
+    this.info.temp = 0;
+    this._snaclBar.open('Starting analysis please wait ...', 'Ok', {
+      duration: 1000
+    });
+    this._annotationService.getCategories(tweet['Tweet'])
+    .subscribe(res => {
+      console.log(res);
+      this.info.rs = res;
+      this.stopstop();
+      this.info.result = {tree: this.deserialize(this.info.rs)};
+    });
+    // this.runningMan(100, () => this.getResult(tweet));
   }
 
-  getResult() {
-    this.info.result = {
-      tree: {
-        name: 'Root',
-        // active: 1,
-        children: [
-          {
-            name: 'Scenic',
-            active: 1,
-            children: [
-              {
-                name: 'Marine species',
-                active: 1
-              },
-              {
-                name: 'Beaches',
-                active: 0
-              },
-              {
-                name: 'Islands',
-                active: 0
-              },
-              {
-                name: 'Valleys',
-                active: 0
-              },
-              {
-                name: 'Waterfalls',
-                active: 0
-              },
-              {
-                name: 'Forests',
-                active: 0
-              }
-            ]
-          },
-          {
-            name: 'Air tours',
-            active: 1,
-            children: [
-              {
-                name: 'Sccenic flight tours',
-                active: 0
-              },
-              {
-                name: 'Sky diving',
-                active: 0
-              }
-            ]
-          },
-          {
-            name: 'Water-based activities',
-            active: 1,
-            children: [
-              {
-                name: 'Sailing',
-                active: 1
-              },
-              {
-                name: 'Cruise',
-                active: 0
-              },
-              {
-                name: 'Boat tour',
-                active: 0
-              },
-              {
-                name: 'Whale watching',
-                active: 0
-              },
-              {
-                name: 'Jet tours',
-                active: 0
-              },
-              {
-                name: 'Fishing charters',
-                active: 0
-              },
-            ]
-          },
-          {
-            name: 'Underwater tours',
-            active: 1,
-            children: [
-              {
-                name: 'Snorkelling tour',
-                active: 1
-              },
-              {
-                name: 'Diving',
-                active: 0
-              }
-            ]
-          },
-          {
-            name: 'Activities',
-            active: 1,
-            children: [
-              {
-                name: 'Hiking',
-                active: 0
-              },
-              {
-                name: 'Swimming',
-                active: 0
-              },
-              {
-                name: 'Horse riding',
-                active: 1
-              },
-              {
-                name: 'Surfing',
-                active: 0
-              }
-            ]
-          },
-          {
-            name: 'General',
-            active: 1
-          }
-        ]
-      }
-    };
-  }
-
+  // getResult(tweet) {
+  //   console.log('121');
+  //   // this.info.result.tree = this.info.temp;
+  // }
   /**
    * Map data receive to tree
    */
 
   deserialize(data: any) {
-    let tree = {
+    const tree = {
       name: 'Root',
       // active: 1,
       children: [
         {
           name: 'Scenic',
-          active: 1,
+          key: 'scenic',
+          // tslint:disable-next-line:max-line-length
+          active: Number(data['island']) + Number(data['submarine_creature']) + Number(data['beach']) + Number(data['valley']) + Number(data['waterfall']) + Number(data['forest']),
           children: [
             {
               name: 'Marine species',
-              active: 1
+              key: 'submarine_creature',
+              active: data['submarine_creature']
             },
             {
               name: 'Beaches',
-              active: 0
+              key: 'beach',
+              active: data['beach']
             },
             {
               name: 'Islands',
-              active: 0
+              key: 'island',
+              active: data['island']
             },
             {
               name: 'Valleys',
-              active: 0
+              key: 'valley',
+              active: data['valley']
             },
             {
               name: 'Waterfalls',
-              active: 0
+              key: 'waterfall',
+              active: data['waterfall']
             },
             {
               name: 'Forests',
-              active: 0
+              key: 'forest',
+              active: data['forest']
             }
           ]
         },
         {
           name: 'Air tours',
-          active: 1,
+          active: Number(data['scenic_flight_tour']) + Number(data['sky_diving']),
+          key: 'air_tours',
           children: [
             {
               name: 'Sccenic flight tours',
-              active: 0
+              key: 'scenic_flight_tour',
+              active: data['scenic_flight_tour']
             },
             {
               name: 'Sky diving',
-              active: 0
+              key: 'sky_diving',
+              active: data['sky_diving']
             }
           ]
         },
         {
           name: 'Water-based activities',
-          active: 1,
+          key: 'surface_tours',
+          // tslint:disable-next-line:max-line-length
+          active: Number(data['sailing']) + Number(data['cruise']) + Number(data['boat_tour']) + Number(data['whale_watching']) + Number(data['jet_tour']) + Number(data['fishing_charter']),
           children: [
             {
               name: 'Sailing',
-              active: 1
+              key: 'sailing',
+              active: data['sailing']
             },
             {
               name: 'Cruise',
-              active: 0
+              key: 'cruise',
+              active: data['cruise']
             },
             {
               name: 'Boat tour',
-              active: 0
+              key: 'boat_tour',
+              active: data['boat_tour']
             },
             {
               name: 'Whale watching',
-              active: 0
+              key: 'whale_watching',
+              active: data['whale_watching']
             },
             {
               name: 'Jet tours',
-              active: 0
+              key: 'jet_tour',
+              active: data['jet_tour']
             },
             {
               name: 'Fishing charters',
-              active: 0
+              key: 'fishing_charter',
+              active: data['fishing_charter']
             },
           ]
         },
         {
           name: 'Underwater tours',
-          active: 1,
+          key: 'undersea_tours',
+          active: Number(data['snorkeling_tour']) + Number(data['scuba_diving']),
           children: [
             {
               name: 'Snorkelling tour',
-              active: 1
+              key: 'snorkeling_tour',
+              active: data['snorkeling_tour']
             },
             {
               name: 'Diving',
-              active: 0
+              key: 'scuba_diving',
+              active: data['scuba_diving']
             }
           ]
         },
         {
           name: 'Activities',
-          active: 1,
+          key: 'activities',
+          active: Number(data['hiking']) + Number(data['swimming']) + Number(data['horse_riding']) + Number(data['surfing']),
           children: [
             {
               name: 'Hiking',
-              active: 0
+              key: 'hiking',
+              active: data['hiking']
             },
             {
               name: 'Swimming',
-              active: 0
+              key: 'swimming',
+              active: data['swimming']
             },
             {
               name: 'Horse riding',
-              active: 1
+              key: 'horse_riding',
+              active: data['horse_riding']
             },
             {
               name: 'Surfing',
-              active: 0
+              key: 'surfing',
+              active: data['surfing']
             }
           ]
         },
         {
           name: 'General',
-          active: 1
+          key: 'general',
+          active: data['general']
         }
       ]
     };
+    return tree;
   }
 
   /**
@@ -307,126 +224,155 @@ export class AnnotationComponent implements OnInit {
   sl() {
     this.info.result = {
       tree: {
-        name: 'Root',
-        // active: 1,
-        children: [
-          {
-            name: 'Scenic',
-            active: Math.floor(Math.random() * 2),
-            children: [
-              {
-                name: 'Marine species',
-                active: Math.floor(Math.random() * 2)
-              },
-              {
-                name: 'Beaches',
-                active: Math.floor(Math.random() * 2)
-              },
-              {
-                name: 'Islands',
-                active: Math.floor(Math.random() * 2)
-              },
-              {
-                name: 'Valleys',
-                active: Math.floor(Math.random() * 2)
-              },
-              {
-                name: 'Waterfalls',
-                active: Math.floor(Math.random() * 2)
-              },
-              {
-                name: 'Forests',
-                active: Math.floor(Math.random() * 2)
-              }
-            ]
-          },
-          {
-            name: 'Air tours',
-            active: Math.floor(Math.random() * 2),
-            children: [
-              {
-                name: 'Sccenic flight tours',
-                active: Math.floor(Math.random() * 2)
-              },
-              {
-                name: 'Sky diving',
-                active: Math.floor(Math.random() * 2)
-              }
-            ]
-          },
-          {
-            name: 'Water-based activities',
-            active: Math.floor(Math.random() * 2),
-            children: [
-              {
-                name: 'Sailing',
-                active: Math.floor(Math.random() * 2)
-              },
-              {
-                name: 'Cruise',
-                active: Math.floor(Math.random() * 2)
-              },
-              {
-                name: 'Boat tour',
-                active: Math.floor(Math.random() * 2)
-              },
-              {
-                name: 'Whale watching',
-                active: Math.floor(Math.random() * 2)
-              },
-              {
-                name: 'Jet tours',
-                active: Math.floor(Math.random() * 2)
-              },
-              {
-                name: 'Fishing charters',
-                active: Math.floor(Math.random() * 2)
-              },
-            ]
-          },
-          {
-            name: 'Underwater tours',
-            active: Math.floor(Math.random() * 2),
-            children: [
-              {
-                name: 'Snorkelling tour',
-                active: Math.floor(Math.random() * 2)
-              },
-              {
-                name: 'Diving',
-                active: Math.floor(Math.random() * 2)
-              }
-            ]
-          },
-          {
-            name: 'Activities',
-            active: Math.floor(Math.random() * 2),
-            children: [
-              {
-                name: 'Hiking',
-                active: Math.floor(Math.random() * 2)
-              },
-              {
-                name: 'Swimming',
-                active: Math.floor(Math.random() * 2)
-              },
-              {
-                name: 'Horse riding',
-                active: Math.floor(Math.random() * 2)
-              },
-              {
-                name: 'Surfing',
-                active: Math.floor(Math.random() * 2)
-              }
-            ]
-          },
-          {
-            name: 'General',
-            active: Math.floor(Math.random() * 2)
-          }
-        ]
+      name: 'Root',
+      // active: 1,
+      children: [
+        {
+          name: 'Scenic',
+          key: 'scenic',
+          // tslint:disable-next-line:max-line-length
+          active: Math.floor(Math.random() * 2),
+          children: [
+            {
+              name: 'Marine species',
+              key: 'submarine_creature',
+              active: Math.floor(Math.random() * 2)
+            },
+            {
+              name: 'Beaches',
+              key: 'beach',
+              active: Math.floor(Math.random() * 2)
+            },
+            {
+              name: 'Islands',
+              key: 'island',
+              active: Math.floor(Math.random() * 2)
+            },
+            {
+              name: 'Valleys',
+              key: 'valley',
+              active: Math.floor(Math.random() * 2)
+            },
+            {
+              name: 'Waterfalls',
+              key: 'waterfall',
+              active: Math.floor(Math.random() * 2)
+            },
+            {
+              name: 'Forests',
+              key: 'forest',
+              active: Math.floor(Math.random() * 2)
+            }
+          ]
+        },
+        {
+          name: 'Air tours',
+          active: Math.floor(Math.random() * 2),
+          key: 'air_tours',
+          children: [
+            {
+              name: 'Sccenic flight tours',
+              key: 'scenic_flight_tour',
+              active: Math.floor(Math.random() * 2)
+            },
+            {
+              name: 'Sky diving',
+              key: 'sky_diving',
+              active: Math.floor(Math.random() * 2)
+            }
+          ]
+        },
+        {
+          name: 'Water-based activities',
+          key: 'surface_tours',
+          // tslint:disable-next-line:max-line-length
+          active: Math.floor(Math.random() * 2),
+          children: [
+            {
+              name: 'Sailing',
+              key: 'sailing',
+              active: Math.floor(Math.random() * 2)
+            },
+            {
+              name: 'Cruise',
+              key: 'cruise',
+              active: Math.floor(Math.random() * 2)
+            },
+            {
+              name: 'Boat tour',
+              key: 'boat_tour',
+              active: Math.floor(Math.random() * 2)
+            },
+            {
+              name: 'Whale watching',
+              key: 'whale_watching',
+              active: Math.floor(Math.random() * 2)
+            },
+            {
+              name: 'Jet tours',
+              key: 'jet_tour',
+              active: Math.floor(Math.random() * 2)
+            },
+            {
+              name: 'Fishing charters',
+              key: 'fishing_charter',
+              active: Math.floor(Math.random() * 2)
+            },
+          ]
+        },
+        {
+          name: 'Underwater tours',
+          key: 'undersea_tours',
+          active: Math.floor(Math.random() * 2),
+          children: [
+            {
+              name: 'Snorkelling tour',
+              key: 'snorkeling_tour',
+              active: Math.floor(Math.random() * 2)
+            },
+            {
+              name: 'Diving',
+              key: 'scuba_diving',
+              active: Math.floor(Math.random() * 2)
+            }
+          ]
+        },
+        {
+          name: 'Activities',
+          key: 'activities',
+          active: Math.floor(Math.random() * 2),
+          children: [
+            {
+              name: 'Hiking',
+              key: 'hiking',
+              active: Math.floor(Math.random() * 2)
+            },
+            {
+              name: 'Swimming',
+              key: 'swimming',
+              active: Math.floor(Math.random() * 2)
+            },
+            {
+              name: 'Horse riding',
+              key: 'horse_riding',
+              active: Math.floor(Math.random() * 2)
+            },
+            {
+              name: 'Surfing',
+              key: 'surfing',
+              active: Math.floor(Math.random() * 2)
+            }
+          ]
+        },
+        {
+          name: 'General',
+          key: 'general',
+          active: Math.floor(Math.random() * 2)
+        }
+      ]
       }
     };
+    // console.log('sl');
   }
 
   /****
@@ -445,6 +391,28 @@ export class AnnotationComponent implements OnInit {
         this.sl();
       }
     }, 10);
+  }
+
+  runrun () {
+    // console.log('run');
+    this.ok = true;
+    this.run = setInterval(() => {
+      this.info.temp ++;
+      if (this.info.temp >= 1000) {
+        this.info.err = true;
+        this._snaclBar.open('Some thing went wrong please try again!','',{
+          duration: 1000
+        });
+        clearInterval(this.run);
+      }
+      this.sl();
+    }, 50);
+  }
+
+  stopstop() {
+    console.log('stop');
+    clearInterval(this.run);
+    // callback();
   }
 
 }
